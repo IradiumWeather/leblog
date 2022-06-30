@@ -47,9 +47,9 @@
                             </div>
                             <div class="flex items-center justify-between mt-4">
                                 <a
-                                    href="#"
+                                    href="{{ route('posts.show',$post) }}"
                                     class="text-blue-500 hover:underline"
-                                    >Read more</a
+                                    >Voir plus</a
                                 >
                                 <div>
                                     <a href="#" class="flex items-center"
