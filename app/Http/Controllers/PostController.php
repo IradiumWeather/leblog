@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Categorie;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
@@ -15,7 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::with('category','user')->get() ;
+        return view('posts.index', ['posts'=>$posts]);
     }
 
     /**
@@ -25,7 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categorys = Categorie::all();
+        return view('posts.create',['categorys' => $categorys]);
     }
 
     /**
@@ -36,7 +39,12 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $imageName = $request->image->store('posts'); //créé un dossier posts
+        Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $imageName,
+        ]);
     }
 
     /**
