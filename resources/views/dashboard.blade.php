@@ -15,7 +15,7 @@
                 @foreach ($posts as $post)
                 <div class="flex items-center">
                     <a href="{{ route('posts.edit',$post) }}" class="bg-yellow-500">Editer {{ $post->title }}</a>
-                    <a href="" class="bg-red-500" onclick="event.preventDefault;
+                    <a href="" class="bg-red-500" onclick="event.preventDefault();
                     document.getElementById('destroy-post-form').submit();">Supprimer {{ $post->title }}
                     <form action="{{ route('posts.destroy',$post) }}" method="post" id="destroy-post-form">
                         @csrf
